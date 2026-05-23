@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janma Kundali · Dikshant Agarwal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0e18;
+  --bg-panel: #131826;
+  --bg-elev: #1a2030;
+  --ink: #ece1c7;
+  --ink-soft: #b8a888;
+  --ink-mute: #7a6f5a;
+  --gold: #d4a456;
+  --gold-bright: #f0c878;
+  --gold-deep: #8a6a30;
+  --maroon: #a83545;
+  --maroon-deep: #6b1f2a;
+  --border: #2a3041;
+  --border-warm: #3a3020;
+  --star: #fff2c4;
+  --shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.65;
+  font-weight: 400;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Starfield background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, var(--star) 0%, transparent 50%),
+    radial-gradient(1px 1px at 80% 70%, var(--star) 0%, transparent 50%),
+    radial-gradient(1px 1px at 45% 85%, rgba(255,242,196,0.6) 0%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 65% 15%, var(--gold-bright) 0%, transparent 50%),
+    radial-gradient(1px 1px at 90% 45%, rgba(255,242,196,0.4) 0%, transparent 50%),
+    radial-gradient(1px 1px at 10% 60%, var(--star) 0%, transparent 50%),
+    radial-gradient(1px 1px at 30% 75%, rgba(255,242,196,0.5) 0%, transparent 50%),
+    radial-gradient(1px 1px at 55% 25%, var(--gold-bright) 0%, transparent 50%),
+    radial-gradient(2px 2px at 75% 90%, rgba(255,242,196,0.3) 0%, transparent 50%),
+    radial-gradient(1px 1px at 5% 10%, var(--star) 0%, transparent 50%),
+    radial-gradient(1px 1px at 95% 80%, var(--star) 0%, transparent 50%),
+    radial-gradient(1px 1px at 40% 45%, rgba(255,242,196,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(212,164,86,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(168,53,69,0.05) 0%, transparent 60%);
+  background-size: 800px 800px, 600px 600px, 700px 700px, 500px 500px, 900px 900px, 750px 750px, 650px 650px, 850px 850px, 1000px 1000px, 550px 550px, 950px 950px, 700px 700px, 100% 100%, 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 240s linear infinite;
+}
+
+@keyframes drift {
+  from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+  to { background-position: 800px -400px, -600px 300px, 700px 500px, -500px -250px, 900px 450px, -750px 375px, 650px -325px, -850px 425px, 1000px 500px, -550px -275px, 950px -475px, -700px 350px, 0 0, 0 0; }
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wrap { position: relative; z-index: 2; }
+
+/* Top progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--gold-deep));
+  width: 0;
+  z-index: 100;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 12px var(--gold);
+}
+
+/* ====================== Hero ====================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px 60px;
+  position: relative;
+  text-align: center;
+}
+
+.hero-ornament {
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.2s forwards;
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.4s forwards;
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 1.4s 0.6s forwards;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.hero-name .italic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold-bright);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  margin-bottom: 56px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 1.2s 0.8s forwards;
+}
+
+.hero-divider {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 48px;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1.4s 1s forwards;
+}
+
+.hero-divider::before {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-deep);
+  padding: 0 12px;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.hero-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  opacity: 0;
+  animation: fadeUp 1.4s 1.2s forwards;
+}
+
+.detail-item {
+  border-left: 1px solid var(--border-warm);
+  padding-left: 16px;
+}
+
+.detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.detail-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ====================== Chart Section ====================== */
+.charts-section {
+  padding: 80px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chart-card {
+  background: linear-gradient(180deg, rgba(26,32,48,0.6), rgba(19,24,38,0.8));
+  border: 1px solid var(--border-warm);
+  border-radius: 4px;
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+}
+
+.chart-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 4px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gold-deep), transparent, var(--gold-deep));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.chart-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.chart-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.kundali-svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.kundali-cell {
+  fill: rgba(212,164,86,0.03);
+  stroke: var(--gold);
+  stroke-width: 1;
+  transition: fill 0.3s;
+}
+.kundali-cell:hover { fill: rgba(212,164,86,0.12); }
+
+.kundali-sign {
+  fill: var(--ink-mute);
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+}
+
+.kundali-house-num {
+  fill: var(--gold-bright);
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.kundali-planet {
+  fill: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.kundali-planet-deg {
+  fill: var(--ink-soft);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+.kundali-lagna {
+  fill: var(--maroon);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+}
+
+.kundali-center {
+  fill: var(--ink-soft);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.kundali-center-title {
+  fill: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-anchor: middle;
+}
+
+/* ====================== Quick Read ====================== */
+.essence {
+  max-width: 800px;
+  margin: 40px auto 80px;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.essence-mark {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 5rem;
+  color: var(--gold-deep);
+  line-height: 0.6;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.essence-text {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.45;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.essence-text strong {
+  color: var(--gold-bright);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.essence-attribution {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 32px;
+  display: block;
+}
+
+/* ====================== Navigation ====================== */
+.toc-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid var(--gold-deep);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: var(--shadow);
+}
+.toc-toggle:hover {
+  background: var(--gold);
+  color: var(--bg-deep);
+  transform: rotate(90deg);
+}
+
+.toc {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(10,14,24,0.98), rgba(19,24,38,0.98));
+  border-left: 1px solid var(--border-warm);
+  padding: 80px 40px 40px;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  z-index: 40;
+  overflow-y: auto;
+  backdrop-filter: blur(12px);
+}
+.toc.open { transform: translateX(0); }
+
+.toc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: parts;
+}
+
+.toc li {
+  counter-increment: parts;
+  margin-bottom: 18px;
+  position: relative;
+  padding-left: 36px;
+}
+
+.toc li::before {
+  content: counter(parts, decimal);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.toc a {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  font-style: italic;
+}
+.toc a:hover { color: var(--gold-bright); }
+
+/* ====================== Content Sections ====================== */
+.content {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.part {
+  padding: 100px 0 40px;
+  scroll-margin-top: 20px;
+}
+
+.part-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+}
+
+.part-number {
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.part-roman {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.part-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+.part-title em {
+  font-style: italic;
+  color: var(--gold-bright);
+  font-weight: 300;
+}
+
+.ornament-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  gap: 16px;
+}
+
+.ornament-divider .line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+}
+
+.ornament-divider .symbol {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+}
+
+h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.55rem;
+  color: var(--ink);
+  margin: 48px 0 20px;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+
+h3 .num {
+  font-family: 'Cinzel', serif;
+  font-style: normal;
+  font-size: 0.7em;
+  color: var(--gold);
+  margin-right: 14px;
+  letter-spacing: 0.1em;
+  vertical-align: 0.05em;
+}
+
+h4 {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin: 36px 0 16px;
+}
+
+p {
+  margin-bottom: 18px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+p strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
+p em {
+  color: var(--ink);
+  font-style: italic;
+}
+
+ul, ol {
+  margin: 16px 0 24px 0;
+  padding-left: 28px;
+}
+
+li {
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+li::marker {
+  color: var(--gold);
+}
+
+ul li::marker {
+  content: '✦  ';
+  font-size: 0.7em;
+}
+
+/* ====================== Tables ====================== */
+.table-wrap {
+  margin: 28px 0 32px;
+  overflow-x: auto;
+  border: 1px solid var(--border-warm);
+  border-radius: 2px;
+  background: rgba(19,24,38,0.4);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.98rem;
+}
+
+thead {
+  background: linear-gradient(180deg, rgba(212,164,86,0.12), rgba(212,164,86,0.04));
+  border-bottom: 1px solid var(--gold-deep);
+}
+
+th {
+  text-align: left;
+  padding: 14px 18px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  font-weight: 500;
+  border-right: 1px solid rgba(212,164,86,0.15);
+}
+th:last-child { border-right: none; }
+
+td {
+  padding: 14px 18px;
+  border-top: 1px solid rgba(212,164,86,0.08);
+  border-right: 1px solid rgba(212,164,86,0.05);
+  color: var(--ink);
+  vertical-align: top;
+  line-height: 1.5;
+}
+td:last-child { border-right: none; }
+
+tbody tr:hover { background: rgba(212,164,86,0.04); }
+
+td strong { color: var(--gold-bright); }
+td em { color: var(--ink-soft); font-style: italic; }
+
+.check { color: #7ec27e; font-weight: 700; }
+.cross { color: var(--maroon); font-weight: 700; }
+.partial { color: var(--gold); font-weight: 700; }
+
+/* Callouts */
+.callout {
+  background: rgba(168,53,69,0.06);
+  border-left: 3px solid var(--maroon);
+  padding: 24px 28px;
+  margin: 32px 0;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+}
+
+.callout-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--maroon);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.callout.gold {
+  background: rgba(212,164,86,0.05);
+  border-left-color: var(--gold);
+}
+
+.callout.gold .callout-title { color: var(--gold-bright); }
+
+/* Big quote */
+.pullquote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--ink);
+  padding: 40px 0;
+  margin: 40px 0;
+  border-top: 1px solid var(--border-warm);
+  border-bottom: 1px solid var(--border-warm);
+  text-align: center;
+  letter-spacing: -0.005em;
+}
+
+.pullquote em {
+  color: var(--gold-bright);
+  font-weight: 400;
+}
+
+/* ====================== Dasha Timeline ====================== */
+.dasha-timeline {
+  margin: 40px 0;
+  position: relative;
+  padding: 20px 0;
+}
+
+.dasha-track {
+  display: flex;
+  height: 60px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border-warm);
+}
+
+.dasha-block {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+  color: var(--ink);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  position: relative;
+  border-right: 1px solid rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+  cursor: default;
+}
+
+.dasha-block:hover { transform: scaleY(1.08); z-index: 2; }
+
+.dasha-block .lord { color: var(--bg-deep); font-weight: 600; }
+.dasha-block .years { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; font-style: italic; opacity: 0.8; margin-top: 2px; color: var(--bg-deep); letter-spacing: 0; }
+
+.dasha-block.past { background: linear-gradient(180deg, #4a4030, #3a3025); opacity: 0.6; }
+.dasha-block.past .lord, .dasha-block.past .years { color: var(--ink-soft); }
+.dasha-block.current { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); box-shadow: 0 0 24px rgba(240,200,120,0.4); z-index: 1; }
+.dasha-block.next { background: linear-gradient(180deg, var(--gold), var(--gold-deep)); }
+.dasha-block.future { background: linear-gradient(180deg, #3a3a4a, #2a2a3a); color: var(--ink-soft); }
+.dasha-block.future .lord, .dasha-block.future .years { color: var(--ink-soft); }
+
+.dasha-label {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+
+.dasha-marker {
+  position: absolute;
+  top: -16px;
+  width: 2px;
+  height: 76px;
+  background: var(--gold-bright);
+  box-shadow: 0 0 8px var(--gold-bright);
+}
+
+.dasha-marker::after {
+  content: 'now';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+}
+
+/* ====================== Year Forecast Cards ====================== */
+.year-card {
+  background: linear-gradient(135deg, rgba(26,32,48,0.7), rgba(19,24,38,0.4));
+  border: 1px solid var(--border-warm);
+  border-radius: 4px;
+  padding: 36px 32px;
+  margin: 40px 0;
+  position: relative;
+}
+
+.year-card-marker {
+  position: absolute;
+  top: -16px;
+  left: 32px;
+  background: var(--bg-deep);
+  padding: 0 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+}
+
+.year-card h3 {
+  margin-top: 8px;
+}
+
+/* ====================== Footer ====================== */
+footer {
+  margin-top: 120px;
+  padding: 60px 40px 40px;
+  text-align: center;
+  border-top: 1px solid var(--border-warm);
+  position: relative;
+}
+
+footer::before {
+  content: '✦   ✧   ✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-deep);
+  padding: 0 20px;
+  color: var(--gold);
+  letter-spacing: 0.6em;
+  font-size: 0.8rem;
+}
+
+footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 0.95rem;
+  max-width: 720px;
+  margin: 0 auto 12px;
+  line-height: 1.6;
+}
+
+footer .signature {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 32px;
+}
+
+/* ====================== Responsive ====================== */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .hero { padding: 60px 24px 40px; }
+  .hero-details { gap: 20px; }
+  .charts-section {
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+    gap: 40px;
+  }
+  .chart-card { padding: 32px 20px; }
+  .essence { padding: 40px 24px; }
+  .content { padding: 0 24px; }
+  .part { padding: 60px 0 20px; }
+  .toc { width: 100%; }
+  .table-wrap { font-size: 0.9rem; }
+  th, td { padding: 10px 12px; }
+  th { font-size: 0.6rem; letter-spacing: 0.15em; }
+  .dasha-track { height: 80px; }
+  .dasha-block { font-size: 0.55rem; }
+}
+
+/* ====================== Print ====================== */
+@media print {
+  body::before, body::after { display: none; }
+  body { background: white; color: black; }
+  .toc, .toc-toggle, .scroll-progress { display: none; }
+  .part { page-break-inside: avoid; padding: 20px 0; }
+  table { font-size: 11px; }
+}
+
+/* Selection */
+::selection { background: var(--gold); color: var(--bg-deep); }
+
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="progress"></div>
+
+<button class="toc-toggle" id="tocToggle" aria-label="Open Table of Contents">☰</button>
+
+<nav class="toc" id="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#part-1">Core Birth Chart</a></li>
+    <li><a href="#part-2">Past Life &amp; Patterns</a></li>
+    <li><a href="#part-3">Career &amp; Profession</a></li>
+    <li><a href="#part-4">Money &amp; Wealth</a></li>
+    <li><a href="#part-5">Love &amp; Relationships</a></li>
+    <li><a href="#part-6">Marriage &amp; Spouse</a></li>
+    <li><a href="#part-7">Health &amp; Well-being</a></li>
+    <li><a href="#part-8">Family &amp; Personal Life</a></li>
+    <li><a href="#part-9">Future Timeline</a></li>
+    <li><a href="#part-10">Remedies</a></li>
+    <li><a href="#part-11">Final Guidance</a></li>
+  </ol>
+</nav>
+
+<div class="wrap">
+
+<!-- ====================== HERO ====================== -->
+<header class="hero">
+  <div class="hero-ornament">ॐ श्री गणेशाय नमः</div>
+  <div class="hero-eyebrow">Janma Kundali · Vedic Birth Chart Analysis</div>
+  <h1 class="hero-name">Dikshant <span class="italic">Agarwal</span></h1>
+  <div class="hero-subtitle">A reading in the Parashari tradition · Lahiri sidereal ayanamsa</div>
+
+  <div class="hero-divider"></div>
+
+  <div class="hero-details">
+    <div class="detail-item">
+      <span class="detail-label">Date of Birth</span>
+      <span class="detail-value">01 March 2006</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Time of Birth</span>
+      <span class="detail-value">08:01 AM IST</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Place of Birth</span>
+      <span class="detail-value">Surat, Gujarat, India</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Lagna</span>
+      <span class="detail-value">Pisces (Meena) 5°11′</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Moon Sign</span>
+      <span class="detail-value">Pisces · Purva Bhadrapada</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Sun Sign</span>
+      <span class="detail-value">Aquarius · Shatabhisha</span>
+    </div>
+  </div>
+</header>
+
+<!-- ====================== CHARTS ====================== -->
+<section class="charts-section">
+
+  <!-- Rashi Chart -->
+  <div class="chart-card">
+    <div class="chart-title">Rāshi Chart · D1</div>
+    <div class="chart-subtitle">The natal chart — sky at the moment of birth</div>
+    <svg class="kundali-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Cells: 4x4 grid, center 2x2 empty -->
+      <!-- Row 1: Pisces(H1), Aries(H2), Taurus(H3), Gemini(H4) -->
+      <rect x="0" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="100" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="200" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="0" width="100" height="100" class="kundali-cell"/>
+      <!-- Row 2: Aquarius(H12), center, center, Cancer(H5) -->
+      <rect x="0" y="100" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="100" width="100" height="100" class="kundali-cell"/>
+      <!-- Row 3: Capricorn(H11), center, center, Leo(H6) -->
+      <rect x="0" y="200" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="200" width="100" height="100" class="kundali-cell"/>
+      <!-- Row 4: Sagittarius(H10), Scorpio(H9), Libra(H8), Virgo(H7) -->
+      <rect x="0" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="100" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="200" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="300" width="100" height="100" class="kundali-cell"/>
+
+      <!-- Center -->
+      <rect x="100" y="100" width="200" height="200" fill="rgba(212,164,86,0.04)" stroke="var(--gold-deep)" stroke-width="0.5"/>
+
+      <!-- Sign names (top-left of each cell) -->
+      <text x="50" y="14" class="kundali-sign">PISCES</text>
+      <text x="150" y="14" class="kundali-sign">ARIES</text>
+      <text x="250" y="14" class="kundali-sign">TAURUS</text>
+      <text x="350" y="14" class="kundali-sign">GEMINI</text>
+      <text x="50" y="114" class="kundali-sign">AQUARIUS</text>
+      <text x="350" y="114" class="kundali-sign">CANCER</text>
+      <text x="50" y="214" class="kundali-sign">CAPRICORN</text>
+      <text x="350" y="214" class="kundali-sign">LEO</text>
+      <text x="50" y="314" class="kundali-sign">SAGITTARIUS</text>
+      <text x="150" y="314" class="kundali-sign">SCORPIO</text>
+      <text x="250" y="314" class="kundali-sign">LIBRA</text>
+      <text x="350" y="314" class="kundali-sign">VIRGO</text>
+
+      <!-- House numbers (Devanagari) -->
+      <text x="14" y="92" class="kundali-house-num">१</text>
+      <text x="114" y="92" class="kundali-house-num">२</text>
+      <text x="214" y="92" class="kundali-house-num">३</text>
+      <text x="314" y="92" class="kundali-house-num">४</text>
+      <text x="14" y="192" class="kundali-house-num">१२</text>
+      <text x="314" y="192" class="kundali-house-num">५</text>
+      <text x="14" y="292" class="kundali-house-num">११</text>
+      <text x="314" y="292" class="kundali-house-num">६</text>
+      <text x="14" y="392" class="kundali-house-num">१०</text>
+      <text x="114" y="392" class="kundali-house-num">९</text>
+      <text x="214" y="392" class="kundali-house-num">८</text>
+      <text x="314" y="392" class="kundali-house-num">७</text>
+
+      <!-- Planets -->
+      <!-- House 1 / Pisces: Lagna, Moon, Mercury, Rahu -->
+      <text x="50" y="38" class="kundali-lagna">LAGNA</text>
+      <text x="35" y="58" class="kundali-planet">Mo</text>
+      <text x="35" y="72" class="kundali-planet-deg">1°47′</text>
+      <text x="65" y="58" class="kundali-planet">Me</text>
+      <text x="65" y="72" class="kundali-planet-deg">2°44′</text>
+      <text x="50" y="90" class="kundali-planet">Ra 11°55′</text>
+
+      <!-- House 3 / Taurus: Mars -->
+      <text x="250" y="55" class="kundali-planet">Ma</text>
+      <text x="250" y="72" class="kundali-planet-deg">11°43′</text>
+
+      <!-- House 5 / Cancer: Saturn (debilitated) -->
+      <text x="350" y="148" class="kundali-planet">Sa ⓡ</text>
+      <text x="350" y="165" class="kundali-planet-deg">11°32′</text>
+
+      <!-- House 7 / Virgo: Ketu -->
+      <text x="350" y="350" class="kundali-planet">Ke</text>
+      <text x="350" y="367" class="kundali-planet-deg">11°55′</text>
+
+      <!-- House 8 / Libra: Jupiter -->
+      <text x="250" y="350" class="kundali-planet">Ju</text>
+      <text x="250" y="367" class="kundali-planet-deg">24°53′</text>
+
+      <!-- House 11 / Capricorn: Venus -->
+      <text x="50" y="250" class="kundali-planet">Ve</text>
+      <text x="50" y="267" class="kundali-planet-deg">2°49′</text>
+
+      <!-- House 12 / Aquarius: Sun -->
+      <text x="50" y="150" class="kundali-planet">Su</text>
+      <text x="50" y="167" class="kundali-planet-deg">16°25′</text>
+
+      <!-- Center info -->
+      <text x="200" y="178" class="kundali-center-title">DIKSHANT</text>
+      <text x="200" y="195" class="kundali-center" style="font-size:7px;letter-spacing:0.2em;">01 · 03 · 2006</text>
+      <text x="200" y="208" class="kundali-center" style="font-size:7px;letter-spacing:0.2em;">08:01 IST</text>
+      <text x="200" y="225" class="kundali-center">— Surat —</text>
+      <text x="200" y="245" class="kundali-center-title" style="font-size:8px;">LAHIRI AYANAMSA</text>
+      <text x="200" y="260" class="kundali-center">23°56′37″</text>
+    </svg>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:var(--ink-mute);font-style:italic;margin-top:20px;line-height:1.4;">South Indian style · Houses fixed by sign · Lagna marked in 1st</p>
+  </div>
+
+  <!-- Navamsa Chart -->
+  <div class="chart-card">
+    <div class="chart-title">Navāmsa · D9</div>
+    <div class="chart-subtitle">The marriage and dharma chart — destiny revealed</div>
+    <svg class="kundali-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Same 4x4 grid -->
+      <rect x="0" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="100" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="200" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="0" width="100" height="100" class="kundali-cell"/>
+      <rect x="0" y="100" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="100" width="100" height="100" class="kundali-cell"/>
+      <rect x="0" y="200" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="200" width="100" height="100" class="kundali-cell"/>
+      <rect x="0" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="100" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="200" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="300" y="300" width="100" height="100" class="kundali-cell"/>
+      <rect x="100" y="100" width="200" height="200" fill="rgba(212,164,86,0.04)" stroke="var(--gold-deep)" stroke-width="0.5"/>
+
+      <!-- Sign names -->
+      <text x="50" y="14" class="kundali-sign">PISCES</text>
+      <text x="150" y="14" class="kundali-sign">ARIES</text>
+      <text x="250" y="14" class="kundali-sign">TAURUS</text>
+      <text x="350" y="14" class="kundali-sign">GEMINI</text>
+      <text x="50" y="114" class="kundali-sign">AQUARIUS</text>
+      <text x="350" y="114" class="kundali-sign">CANCER</text>
+      <text x="50" y="214" class="kundali-sign">CAPRICORN</text>
+      <text x="350" y="214" class="kundali-sign">LEO</text>
+      <text x="50" y="314" class="kundali-sign">SAGITTARIUS</text>
+      <text x="150" y="314" class="kundali-sign">SCORPIO</text>
+      <text x="250" y="314" class="kundali-sign">LIBRA</text>
+      <text x="350" y="314" class="kundali-sign">VIRGO</text>
+
+      <!-- For Leo Lagna in D9:
+           Leo=H1, Virgo=H2, Libra=H3, Scorpio=H4, Sagittarius=H5,
+           Capricorn=H6, Aquarius=H7, Pisces=H8, Aries=H9, Taurus=H10,
+           Gemini=H11, Cancer=H12 -->
+      <text x="14" y="92" class="kundali-house-num">८</text>
+      <text x="114" y="92" class="kundali-house-num">९</text>
+      <text x="214" y="92" class="kundali-house-num">१०</text>
+      <text x="314" y="92" class="kundali-house-num">११</text>
+      <text x="14" y="192" class="kundali-house-num">७</text>
+      <text x="314" y="192" class="kundali-house-num">१२</text>
+      <text x="14" y="292" class="kundali-house-num">६</text>
+      <text x="314" y="292" class="kundali-house-num">१</text>
+      <text x="14" y="392" class="kundali-house-num">५</text>
+      <text x="114" y="392" class="kundali-house-num">४</text>
+      <text x="214" y="392" class="kundali-house-num">३</text>
+      <text x="314" y="392" class="kundali-house-num">२</text>
+
+      <!-- Planets in navamsa -->
+      <!-- Leo (H1, bottom right side): empty but mark Lagna -->
+      <text x="350" y="248" class="kundali-lagna">LAGNA</text>
+
+      <!-- Libra (H3, bottom): Saturn, Rahu -->
+      <text x="240" y="348" class="kundali-planet">Sa★</text>
+      <text x="270" y="348" class="kundali-planet">Ra</text>
+
+      <!-- Capricorn (H6, left side): Venus -->
+      <text x="50" y="248" class="kundali-planet">Ve</text>
+
+      <!-- Aquarius (H7, left side): Sun -->
+      <text x="50" y="148" class="kundali-planet">Su</text>
+
+      <!-- Aries (H9, top): Mars, Ketu -->
+      <text x="135" y="55" class="kundali-planet">Ma</text>
+      <text x="170" y="55" class="kundali-planet">Ke</text>
+
+      <!-- Taurus (H10, top): Jupiter -->
+      <text x="250" y="55" class="kundali-planet">Ju</text>
+
+      <!-- Cancer (H12, right side): Moon, Mercury -->
+      <text x="335" y="148" class="kundali-planet">Mo</text>
+      <text x="365" y="148" class="kundali-planet">Me</text>
+
+      <!-- Center info -->
+      <text x="200" y="178" class="kundali-center-title">NAVAMSA</text>
+      <text x="200" y="195" class="kundali-center" style="font-size:7px;letter-spacing:0.2em;">D9 · ONE NINTH</text>
+      <text x="200" y="215" class="kundali-center">Lagna: Leo</text>
+      <text x="200" y="232" class="kundali-center">Saturn ★ exalted</text>
+      <text x="200" y="252" class="kundali-center" style="font-style:normal;color:var(--gold);font-size:7px;letter-spacing:0.2em;">A SIGNIFICANT</text>
+      <text x="200" y="265" class="kundali-center" style="font-style:normal;color:var(--gold);font-size:7px;letter-spacing:0.2em;">UPGRADE</text>
+    </svg>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:var(--ink-mute);font-style:italic;margin-top:20px;line-height:1.4;">Saturn debilitated in D1 → exalted in D9 · A rare structural reversal</p>
+  </div>
+
+</section>
+
+<!-- ====================== ESSENCE ====================== -->
+<section class="essence">
+  <div class="essence-mark">"</div>
+  <div class="essence-text">
+    A Pisces-Lagna researcher-builder with strong technology karma — <strong>Sun in Shatabhisha</strong>, <strong>Rahu in the 1st house</strong>, and a rare <strong>Neecha Bhanga Raja Yoga on Saturn</strong> that compounds into exaltation in the Navamsa. The chart rewards depth, slow mastery, and built systems over salary — and is structurally suited to AI, agents, and SaaS work in a way that is not generic.
+  </div>
+  <div class="essence-attribution">— The Reading In One Breath —</div>
+</section>
+
+<div class="content">
+
+<!-- ====================== PART 1 ====================== -->
+<section class="part" id="part-1">
+  <div class="part-header">
+    <span class="part-number">प्रथम भाग</span>
+    <span class="part-roman">Part One</span>
+    <h2 class="part-title">Core <em>Birth Chart</em></h2>
+  </div>
+
+  <h3><span class="num">1.1</span>The Three Anchors</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Anchor</th><th>Position</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lagna (Ascendant)</strong></td><td>Pisces 5°11′<br><em>Uttara Bhadrapada Pada 1</em></td><td>Imaginative, intuitive, depth-oriented identity. "Two fish" — one eye on the material world, one on something larger. Saturn-ruled nakshatra makes you a disciplined dreamer, not a drifting one.</td></tr>
+        <tr><td><strong>Moon Sign (Rashi)</strong></td><td>Pisces 1°47′<br><em>Purva Bhadrapada Pada 4</em></td><td>Mind and identity in the same sign → high inner intensity. Jupiter-ruled nakshatra → philosophical, idealistic. Pada 4 (Scorpio navamsa) → mind is investigative, secretive, transformative.</td></tr>
+        <tr><td><strong>Sun Sign</strong></td><td>Aquarius 16°25′<br><em>Shatabhisha Pada 3</em></td><td>Ego invested in unconventional, technical, systemic work. Shatabhisha — "the 100 healers" — is the nakshatra of networks, electricity, hidden knowledge, technology. Almost on the nose for AI/ML.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>You have <strong>three planets plus Lagna in Pisces</strong> (Moon, Mercury, Rahu, Lagna), and your Sun is in one of the most technology-coded nakshatras in the zodiac. The chart's centre of gravity is <em>Pisces intensity channelled into Aquarian and Shatabhisha technical fields</em>. That's not generic — most Pisces lagnas don't look like this.</p>
+
+  <h3><span class="num">1.2</span>Planetary Placements</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Planet</th><th>Sign</th><th>°</th><th>Nakshatra</th><th>House</th><th>Functional Role</th></tr></thead>
+      <tbody>
+        <tr><td>☉ Sun</td><td>Aquarius</td><td>16°25′</td><td>Shatabhisha (Rahu)</td><td>12</td><td>6th lord — creates <strong>Harsha Yoga</strong></td></tr>
+        <tr><td>☽ Moon</td><td>Pisces</td><td>01°47′</td><td>P. Bhadrapada (Jupiter)</td><td>1</td><td>5th lord, functional benefic</td></tr>
+        <tr><td>♂ Mars</td><td>Taurus</td><td>11°43′</td><td>Rohini (Moon)</td><td>3</td><td>2nd + 9th lord, <strong>strong benefic</strong></td></tr>
+        <tr><td>☿ Mercury</td><td>Pisces</td><td>02°44′</td><td>P. Bhadrapada (Jupiter)</td><td>1</td><td>4th + 7th lord, <strong>debilitated</strong></td></tr>
+        <tr><td>♃ Jupiter</td><td>Libra</td><td>24°53′</td><td>Vishakha (Jupiter)</td><td>8</td><td>1st + 10th lord, <em>yogakaraka-like</em></td></tr>
+        <tr><td>♀ Venus</td><td>Capricorn</td><td>02°49′</td><td>U. Ashadha (Sun)</td><td>11</td><td>3rd + 8th lord, well-placed</td></tr>
+        <tr><td>♄ Saturn</td><td>Cancer</td><td>11°32′</td><td>Pushya (Saturn)</td><td>5</td><td>11th + 12th lord, <strong>NBRY + exalted in D9</strong></td></tr>
+        <tr><td>☊ Rahu</td><td>Pisces</td><td>11°55′</td><td>U. Bhadrapada (Saturn)</td><td>1</td><td>Amplifier of self</td></tr>
+        <tr><td>☋ Ketu</td><td>Virgo</td><td>11°55′</td><td>Hasta (Moon)</td><td>7</td><td>Detachment in partnership</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">1.3</span>Houses at a Glance</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>House</th><th>Sign</th><th>Tenants</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Self</td><td>Pisces</td><td>Moon, Mercury, Rahu</td><td>Sensitive + analytical + ambitious-unconventional. Heavy 1st house = self is the project.</td></tr>
+        <tr><td>2 · Wealth, Speech</td><td>Aries</td><td>—</td><td>Mars in 3rd → wealth earned through effort/skill, family stable.</td></tr>
+        <tr><td>3 · Effort, Skill</td><td>Taurus</td><td>Mars</td><td>Excellent for hands-on building, hackathons, learning by doing.</td></tr>
+        <tr><td>4 · Home, Mother</td><td>Gemini</td><td>—</td><td>Some restlessness, possibly relocations later.</td></tr>
+        <tr><td>5 · Intellect, Creativity</td><td>Cancer</td><td>Saturn (NBRY)</td><td>Hard-won intellectual mastery; serious-minded creativity.</td></tr>
+        <tr><td>6 · Work, Health</td><td>Leo</td><td>—</td><td>Sun in 12th → Harsha Yoga, victory over rivals.</td></tr>
+        <tr><td>7 · Partnership</td><td>Virgo</td><td>Ketu</td><td>Partner from different background; karmic detachment.</td></tr>
+        <tr><td>8 · Research, Depth</td><td>Libra</td><td>Jupiter</td><td>Lagna lord in 8th → researcher-seeker. Wisdom from depth.</td></tr>
+        <tr><td>9 · Fortune, Dharma</td><td>Scorpio</td><td>—</td><td>Dharma via skill and effort.</td></tr>
+        <tr><td>10 · Career</td><td>Sagittarius</td><td>—</td><td>Career involves research, depth, non-conventional paths.</td></tr>
+        <tr><td>11 · Gains, Network</td><td>Capricorn</td><td>Venus</td><td>Structured, compounding wealth from networks.</td></tr>
+        <tr><td>12 · Foreign, Liberation</td><td>Aquarius</td><td>Sun</td><td>Ego operates in foreign/digital/hidden domains.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">1.4</span>Yogas Present</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Yoga</th><th>Status</th><th>Mechanism</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Neecha Bhanga Raja Yoga (Saturn)</strong></td><td><span class="check">✓ Strong</span></td><td>Saturn debilitated in Cancer; Moon (depositor) in kendra from Lagna — cancels debilitation, converts to Raja Yoga</td><td>Saturn's apparent weakness becomes hidden strength. Cumulative reward from discipline. Activates during Saturn periods.</td></tr>
+        <tr><td><strong>Harsha Yoga (Vipreet Raja)</strong></td><td><span class="check">✓</span></td><td>6th lord (Sun) in 12th</td><td>Victory over hidden enemies, strong immunity, gains from foreign/digital, work competitors can't replicate.</td></tr>
+        <tr><td><strong>Ubhayachari Yoga</strong></td><td><span class="check">✓</span></td><td>Planets on both sides of Sun (Venus in 12th-from-Sun, Mercury in 2nd-from-Sun)</td><td>Steady prosperity, balanced personality, supportive circumstances around ambition.</td></tr>
+        <tr><td>Vasi Yoga</td><td><span class="check">✓</span></td><td>Venus in 12th from Sun</td><td>Comforts, charm, refined gains.</td></tr>
+        <tr><td>Vesi Yoga</td><td><span class="check">✓</span></td><td>Mercury in 2nd from Sun</td><td>Intellectual reputation.</td></tr>
+        <tr><td><strong>Saturn exalted in Navamsa</strong></td><td><span class="check">✓ Major</span></td><td>Saturn in Libra in D9</td><td>A <em>significant upgrade</em>. Saturn's significations (systems, persistence, code/AI, long mastery) deliver far beyond what natal chart alone suggests.</td></tr>
+        <tr><td>Gaja Kesari Yoga</td><td><span class="cross">✗</span></td><td>Jupiter in 8th from Moon</td><td>Not present.</td></tr>
+        <tr><td>Budha-Aditya Yoga</td><td><span class="cross">✗</span></td><td>Sun-Mercury not conjunct</td><td>Not present.</td></tr>
+        <tr><td>Pancha Mahapurusha Yogas</td><td><span class="cross">✗ in D1</span></td><td>None qualify in own/exalted in kendra in D1</td><td>Compensated by Saturn-in-Navamsa.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">1.5</span>Doshas — An Honest Audit</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dosha</th><th>Status</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Manglik Dosha</strong></td><td><span class="cross">✗ Not Manglik</span></td><td>Mars in 3rd from Lagna and 3rd from Moon — does not cause Manglik. Marriage-compatibility clean.</td></tr>
+        <tr><td><strong>Kaal Sarpa Dosha</strong></td><td><span class="cross">✗ Not present</span></td><td>Planets on both sides of Rahu-Ketu axis. No Kaal Sarpa.</td></tr>
+        <tr><td>Pitra Dosha</td><td><span class="partial">△ Mild</span></td><td>Sun in 12th in Rahu's nakshatra suggests some ancestral karma; Jupiter's aspect softens significantly.</td></tr>
+        <tr><td>Guru Chandal Yoga</td><td><span class="cross">✗</span></td><td>Jupiter and Rahu not conjunct.</td></tr>
+        <tr><td><strong>Shani Sade Sati</strong></td><td><span class="check" style="color:var(--maroon)">⚠ Peak phase</span></td><td>Saturn transiting Pisces (Moon sign) since ~March 2025. Peak runs until ~March 2027. See Part 9.</td></tr>
+        <tr><td>Kemadruma</td><td><span class="cross">✗</span></td><td>Mercury and Rahu with Moon — no Kemadruma.</td></tr>
+        <tr><td>Grahan Dosha</td><td><span class="partial">△ Mild</span></td><td>Moon close to Rahu — emotional intensity, vivid dreaming. Manageable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pullquote">
+    The chart's centre of gravity is a <em>researcher who finds an unconventional niche in a future-coded technical field, succeeds slowly and cumulatively, and earns wealth through networks rather than salary.</em>
+  </div>
+</section>
+
+<!-- ====================== PART 2 ====================== -->
+<section class="part" id="part-2">
+  <div class="part-header">
+    <span class="part-number">द्वितीय भाग</span>
+    <span class="part-roman">Part Two</span>
+    <h2 class="part-title">Past Life &amp; <em>Life Patterns</em></h2>
+  </div>
+
+  <p>This section is the most interpretive — read it as pattern recognition, not literal past-life reportage.</p>
+
+  <h3><span class="num">2.1</span>Karmic Signature</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Indicator</th><th>Suggestion</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ketu in 7th (Virgo, Hasta)</strong></td><td>Past-life mastery of analytical, detail-oriented, service-based work. You enter this life <em>already trained</em> in critical thinking and pattern-matching — that's why technical concepts click faster than peers. The tax is an unfinished karma around partnerships.</td></tr>
+        <tr><td><strong>Rahu in 1st (Pisces, U. Bhadrapada)</strong></td><td>New territory karmically — leaning into identity-building, ambition, pioneering work. Saturn-ruled nakshatra → ambition earned with discipline, not shortcuts. Restlessness is by design.</td></tr>
+        <tr><td><strong>Moon-Mercury-Rahu in 1st</strong></td><td>An overactive mind is hereditary/karmic, not a defect. Mental noise, overthinking, vivid imagination — old patterns being worked through.</td></tr>
+        <tr><td><strong>Jupiter in 8th</strong></td><td>Recurring karmic theme: meant to research, dig, transform — not skim. Conventional fast success is karmically blocked; deep work is karmically rewarded.</td></tr>
+        <tr><td><strong>Saturn debilitated in 5th (with NBRY)</strong></td><td>Past-life lesson around delayed creative recognition. NBRY signals: lesson is largely learned — this life rewards the slow, steady creative builder.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">2.2</span>Three Repeating Patterns to Watch</h3>
+  <ol>
+    <li><strong>The "I'm not ready yet" loop.</strong> Mercury debilitated near Rahu in Lagna creates an inner voice that says <em>the project isn't polished enough to ship</em>. This will cost opportunities if not consciously fought. <em>Lesson: ship before perfect.</em></li>
+    <li><strong>The "deep but invisible" trap.</strong> Jupiter (career lord) in 8th + Sun in 12th → tendency to build excellent things nobody knows about. Deliberately fight the introvert default. <em>Lesson: distribution matters as much as the build.</em></li>
+    <li><strong>Emotional weather hijacking decisions.</strong> Moon + Rahu in Lagna can let storms rewrite long-term plans. The chart rewards <em>systems over moods</em>. <em>Lesson: don't let a bad day rewrite a long-term plan.</em></li>
+  </ol>
+
+  <h3><span class="num">2.3</span>Childhood, Family, Inherited Patterns</h3>
+  <ul>
+    <li><strong>Saturn Mahadasha began ~Jan 2008 (age 2).</strong> Most of your conscious life has been shaped by Saturn. Observant, somewhat solitary, drawn to things older than peers — this fits.</li>
+    <li><strong>4th house Gemini ruled by debilitated Mercury</strong>: restless quality in the home environment; possibly intellectual differences with mother. Not dramatic — but home is rarely fully still.</li>
+    <li><strong>Sun in 12th</strong>: father-figure influence is real but somewhat distant or operating in his own world. Jupiter's aspect on Sun → eventual respect and reconciliation as you grow into your own work.</li>
+    <li><strong>Mars (2nd/9th lord) in 3rd</strong>: family wealth and dharma will be built more by your own efforts than inherited.</li>
+  </ul>
+</section>
+
+<!-- ====================== PART 3 ====================== -->
+<section class="part" id="part-3">
+  <div class="part-header">
+    <span class="part-number">तृतीय भाग</span>
+    <span class="part-roman">Part Three</span>
+    <h2 class="part-title">Career &amp; <em>Professional Life</em></h2>
+  </div>
+
+  <p>This is where your chart is <strong>specifically strong</strong>.</p>
+
+  <h3><span class="num">3.1</span>Career Indicators</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td><strong>10th lord</strong></td><td>Jupiter in 8th in Libra in own nakshatra → career involves research, deep work, transformation. AI/ML R&amp;D fits perfectly.</td></tr>
+        <tr><td><strong>Sun (career significator)</strong></td><td>Aquarius / Shatabhisha → technology, networks, hidden systems, electricity, healing-through-systems. One of the most AI-coded placements possible.</td></tr>
+        <tr><td><strong>Saturn (work, persistence)</strong></td><td>Debilitated with NBRY, exalted in Navamsa → systematic long-form mastery, code, infrastructure work, anything requiring grit + scale.</td></tr>
+        <tr><td><strong>Mars (skill, effort)</strong></td><td>3rd house in Rohini → hands-on building, competitive (hackathons), excellent for technical execution.</td></tr>
+        <tr><td><strong>D9 Navamsa Lagna</strong></td><td>Leo + Saturn exalted in D9 + Jupiter in 10th of D9 → eventual position of authority/recognition in chosen field.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">3.2</span>Job vs Business vs Founder</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Path</th><th>Fit</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Government Job</td><td>Low</td><td>Sun in 12th + Jupiter in 8th don't favor traditional bureaucracy.</td></tr>
+        <tr><td>Salaried Job (Big Tech / AI Lab)</td><td>High in 20s</td><td>A 2–5 year stint at a strong AI lab or research-oriented company compounds your strengths.</td></tr>
+        <tr><td><strong>Foreign / Remote-Foreign Work</strong></td><td><strong>Very High</strong></td><td>Sun in 12th + Rahu in 1st + Pisces Lagna + Saturn exalted in D9. USA, Singapore, Germany, or remote-for-foreign.</td></tr>
+        <tr><td><strong>SaaS / Indie Building</strong></td><td><strong>Very High after 21–22</strong></td><td>Venus in 11th in Capricorn + Saturn (11th lord) in 5th with NBRY → recurring/compounding income from systems. SaaS literally maps to this.</td></tr>
+        <tr><td>Founder / Startup</td><td>High after Jan 2027</td><td>Jupiter in 8th gives founder-archetype (8th = transformation, risk, learning through difficulty).</td></tr>
+        <tr><td>Pure Research / PhD</td><td>Medium-High</td><td>Jupiter in 8th in own nakshatra supports — but your stated interests suggest applied research over academic.</td></tr>
+        <tr><td>Public Recognition / Fame</td><td>Medium</td><td>Niche-fame within the AI/tech community before mainstream.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">3.3</span>Career Timeline</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Phase</th><th>Window</th><th>Theme</th></tr></thead>
+      <tbody>
+        <tr><td>Foundation</td><td>2024 → early 2027</td><td>College, projects, hackathons, GSoC, first SaaS attempts. Slowness despite hard work — don't misread as wrong direction.</td></tr>
+        <tr><td><strong>Mercury MD begins</strong></td><td><strong>Jan 2027</strong></td><td>Career engine turns on. 17 years.</td></tr>
+        <tr><td>Mercury-Mercury</td><td>Jan 2027 → Jun 2029</td><td>First independent projects, possibly first job, building portfolio. Visibility starts.</td></tr>
+        <tr><td><strong>Mercury-Venus</strong></td><td><strong>May 2030 → Mar 2033</strong></td><td>Likely the strongest income-acceleration window of your 20s. SaaS revenue, salary jumps, or both.</td></tr>
+        <tr><td><strong>Mercury-Rahu</strong></td><td><strong>Jul 2036 → Jan 2039</strong></td><td>Foreign + tech + scale amplification. Ages ~30–33.</td></tr>
+        <tr><td>Mercury-Jupiter</td><td>Jan 2039 → Apr 2041</td><td>Recognition phase. Advisory, founder authority.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">3.4</span>Hidden Talents</h3>
+  <ul>
+    <li><strong>Pattern recognition across domains.</strong> Mercury in Pisces — debilitated by sign, but Pisces gives the gestalt-seeing gift that Virgo Mercury lacks. You will see connections others miss. This is your edge in AI/agent design.</li>
+    <li><strong>Endurance for hard problems.</strong> Saturn NBRY + Mars in Rohini → you can grind on a single problem longer than most.</li>
+    <li><strong>Imagination-to-system translation.</strong> Pisces Lagna + Aquarius Sun — you take a vague intuition and turn it into structured systems. Rare. Core skill of good AI/agent builders.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-title">Honest Friction Points</div>
+    <p style="margin-bottom: 8px;"><strong>Writing / documentation</strong> (Mercury debilitated) — projects will outpace README quality.</p>
+    <p style="margin-bottom: 8px;"><strong>Self-promotion / launching</strong> (Sun in 12th + Jupiter in 8th) — you'll build things and not tell anyone.</p>
+    <p style="margin-bottom: 0;"><strong>Overthinking and perfectionism</strong> (Moon-Mercury-Rahu stack) — kills momentum. Set hard ship-by dates.</p>
+  </div>
+</section>
+
+<!-- ====================== PART 4 ====================== -->
+<section class="part" id="part-4">
+  <div class="part-header">
+    <span class="part-number">चतुर्थ भाग</span>
+    <span class="part-roman">Part Four</span>
+    <h2 class="part-title">Money &amp; <em>Wealth</em></h2>
+  </div>
+
+  <h3><span class="num">4.1</span>Wealth Configuration</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Indicator</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>2nd house (accumulated wealth)</td><td>Aries, lord Mars in 3rd → wealth earned through skill/effort, not inheritance. Stable but self-made.</td></tr>
+        <tr><td>11th house (gains, income)</td><td>Capricorn with Venus → strong. Venus in 11th in Saturn's sign is a classic "compounding income" combination.</td></tr>
+        <tr><td>11th lord (Saturn)</td><td>In 5th with NBRY → income from intellect, creativity, code, systems.</td></tr>
+        <tr><td>Sudden gains/losses</td><td>Jupiter in 8th + Saturn debilitated → mixed. Occasional unexpected income (8th = sudden) and occasional unexpected expenses. <em>Not a lottery chart.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">4.2</span>Wealth Profile</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Question</th><th>Answer</th></tr></thead>
+      <tbody>
+        <tr><td>Sudden lottery-style wealth?</td><td>Low probability</td></tr>
+        <tr><td>Compounding wealth from built things (SaaS, equity, network)?</td><td><strong>High probability</strong></td></tr>
+        <tr><td>Inheritance?</td><td>Modest. Own-effort signature stronger than inheritance signature.</td></tr>
+        <tr><td>Property gains?</td><td>Decent in mid-30s onward (Mercury-Rahu and later).</td></tr>
+        <tr><td>Debt risk?</td><td><strong>Moderate caution.</strong> 6th lord Sun in 12th — overspend on hidden/foreign/subscription costs. Watch credit habits in 20s.</td></tr>
+        <tr><td>Best earning age windows</td><td><strong>Ages 24–27 (Mercury-Venus), 30–33 (Mercury-Rahu)</strong>. By ~33, foundational financial independence is realistic.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">Money advice from the chart</div>
+    <ol style="margin: 0; padding-left: 20px;">
+      <li>Build assets that compound — equity, SaaS MRR, content libraries, code reuse.</li>
+      <li>Don't optimise for max salary in early 20s. Optimise for proximity to compounding leverage.</li>
+      <li>Auto-deduct savings from age 20. Pisces lagna types feel-good-spend; automation is the only reliable counter.</li>
+      <li>Insurance and emergency fund by age 22. Jupiter in 8th occasionally throws unexpected expenses.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== PART 5 ====================== -->
+<section class="part" id="part-5">
+  <div class="part-header">
+    <span class="part-number">पञ्चम भाग</span>
+    <span class="part-roman">Part Five</span>
+    <h2 class="part-title">Love &amp; <em>Relationships</em></h2>
+  </div>
+
+  <h3><span class="num">5.1</span>Relationship Indicators</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>7th house</td><td>Virgo with <strong>Ketu</strong> → analytical, possibly detached partner; relationships feel "already-known" or karmic.</td></tr>
+        <tr><td>7th lord (Mercury)</td><td>Debilitated in 1st — partner decisions clouded by self/overthinking. Marriage themes intersect with personal-development themes.</td></tr>
+        <tr><td>Venus (significator of love)</td><td>Capricorn 11th — mature, structured approach; fall slowly, deeply, for someone older or more disciplined than peers.</td></tr>
+        <tr><td>5th house (romance)</td><td>Cancer with debilitated Saturn (NBRY) → delayed but eventually rewarding romance; first deep relationships may have unusual constraints.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">5.2</span>Love Pattern</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pattern</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>Love vs arranged marriage?</td><td><strong>Lean toward love marriage or hybrid</strong>. Pure arranged is unlikely to feel right.</td></tr>
+        <tr><td>First serious relationship timing</td><td>Most likely between <strong>age 22 and 26</strong> (early Mercury MD). Before that, situational connections more than deep relationships.</td></tr>
+        <tr><td>Breakup patterns</td><td>Ketu in 7th → drifting apart rather than fighting. You end relationships through quiet detachment.</td></tr>
+        <tr><td>Type of partner</td><td>Older or more emotionally mature than you, intellectual, possibly from a different city or background. Possibly from work/study circle.</td></tr>
+        <tr><td>Karmic lesson</td><td>Learning to stay <em>engaged</em> rather than retreat into your inner world when intimacy gets intense.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">An honest note</div>
+    <p style="margin: 0;">The chart doesn't show a Disney-romance pattern. It shows someone who will likely have <strong>1–2 significant relationships before marriage</strong>, possibly one ending due to emotional distance or career timing mismatch, and then a more conscious choice in late 20s. Don't force timing.</p>
+  </div>
+</section>
+
+<!-- ====================== PART 6 ====================== -->
+<section class="part" id="part-6">
+  <div class="part-header">
+    <span class="part-number">षष्ठ भाग</span>
+    <span class="part-roman">Part Six</span>
+    <h2 class="part-title">Marriage &amp; <em>Spouse</em></h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Marriage timing</strong></td><td><strong>Most likely 27–30</strong>, possibly 31–32. Earlier than 26 is possible but unlikely to be the right one. Saturn in 5th + Ketu in 7th + Mercury debilitated all push timing later.</td></tr>
+        <tr><td>Spouse personality</td><td>Calm, intelligent, analytical, possibly more emotionally grounded than you, somewhat private. Likely tech, healthcare, research, or service-oriented.</td></tr>
+        <tr><td>Spouse origin</td><td>Different city or cultural sub-group highly likely.</td></tr>
+        <tr><td>Marriage quality</td><td>Generally stable once you find the right person. Jupiter supports marriage durability.</td></tr>
+        <tr><td>Friction zones</td><td>(a) You retreating into work/inner world; (b) different family backgrounds requiring adjustment; (c) early communication issues.</td></tr>
+        <tr><td>Divorce risk</td><td><span class="partial">Low but non-zero.</span> Ketu in 7th + debilitated 7th lord is fragility, not doom. Self-awareness + not marrying too early = sustainable.</td></tr>
+        <tr><td><strong>Best marriage window</strong></td><td><strong>Late 2032 → late 2035</strong> (Mercury-Venus and Mercury-Sun antardashas).</td></tr>
+        <tr><td>Red flags to avoid</td><td>Marrying on family pressure; marrying someone who needs heavy emotional labor; marrying before career direction stabilises (~age 27+).</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ====================== PART 7 ====================== -->
+<section class="part" id="part-7">
+  <div class="part-header">
+    <span class="part-number">सप्तम भाग</span>
+    <span class="part-roman">Part Seven</span>
+    <h2 class="part-title">Health &amp; <em>Well-being</em></h2>
+  </div>
+
+  <h3><span class="num">7.1</span>Physical Tendencies</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Area</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>Constitution</td><td>Pisces lagna with Moon-Mercury-Rahu — generally medium build, sensitive constitution.</td></tr>
+        <tr><td>Sensitive zones</td><td>Feet (Pisces rules feet), digestion / lower abdomen, eyes, immunity dips during seasonal changes.</td></tr>
+        <tr><td>Biggest physical risk</td><td>Sedentary tech lifestyle. Long sitting + screen exposure + irregular sleep accumulate by mid-20s if not addressed now.</td></tr>
+        <tr><td><strong>Sleep</strong></td><td>Moon + Rahu in Lagna → high probability of disturbed sleep, vivid dreams, late-night mental activity. <strong>Single most important health intervention: sleep hygiene.</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">7.2</span>Mental Health Patterns</h3>
+  <p>The chart honestly shows mental sensitivity. Flagging it not to alarm — the pattern is clear:</p>
+  <ul>
+    <li><strong>Moon + Rahu in Lagna in Pisces</strong> → high empathic absorption (picking up others' moods), occasional anxiety, racing thoughts, imagination tipping into rumination.</li>
+    <li><strong>Mercury debilitated near Rahu</strong> → mental loops, perfectionism, second-guessing.</li>
+    <li><strong>Sade Sati peak</strong> (now until ~March 2027) → temporarily heavier mental load.</li>
+  </ul>
+  <p>This is <em>not pathology</em> — it's a configuration. Most people with this configuration who handle it well develop strong contemplative or systemic practices early.</p>
+
+  <div class="callout gold">
+    <div class="callout-title">Practical health priorities</div>
+    <ol style="margin: 0; padding-left: 20px;">
+      <li><strong>Sleep schedule fixed</strong> by 11:30 PM at latest. Non-negotiable for your chart.</li>
+      <li><strong>Daily physical movement</strong> — 30 min walk minimum. Pisces lagna types need grounding through the body.</li>
+      <li><strong>Eye care + screen breaks</strong> — 20-20-20 rule.</li>
+      <li><strong>10 minutes daily pranayama or meditation</strong> — directly addresses Moon-Rahu mental noise.</li>
+      <li><strong>Annual basic health check</strong> from age 22.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== PART 8 ====================== -->
+<section class="part" id="part-8">
+  <div class="part-header">
+    <span class="part-number">अष्टम भाग</span>
+    <span class="part-roman">Part Eight</span>
+    <h2 class="part-title">Family &amp; <em>Personal Life</em></h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Area</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>Father</td><td>Sun in 12th = some emotional distance, father may be reserved, work-focused, or absent in some way. Jupiter's aspect softens this in adulthood.</td></tr>
+        <tr><td>Mother</td><td>4th lord Mercury debilitated in 1st = strong intellectual influence from mother, but some unspoken stress. Mother may have her own anxieties that you've absorbed.</td></tr>
+        <tr><td>Siblings</td><td>3rd house Mars in Taurus → supportive though independent. If only child, peer-siblings (close friends) play this role.</td></tr>
+        <tr><td>Children</td><td>Saturn in 5th (NBRY) → <strong>delayed but eventually fine.</strong> Likely 1–2 children, after age 30. Intellectually inclined.</td></tr>
+        <tr><td>Spiritual growth</td><td>High potential — Pisces lagna + Jupiter in 8th + Ketu in 7th + Sun in 12th = strong moksha indicators. Many in this configuration develop a real meditation/philosophy practice in late 20s.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pullquote">
+    Karmic life lesson: <em>translate inner depth into external systems that help others — without losing yourself in the work.</em>
+  </div>
+</section>
+
+<!-- ====================== PART 9 ====================== -->
+<section class="part" id="part-9">
+  <div class="part-header">
+    <span class="part-number">नवम भाग</span>
+    <span class="part-roman">Part Nine</span>
+    <h2 class="part-title">Future Timeline &amp; <em>Year-Wise Predictions</em></h2>
+  </div>
+
+  <h3><span class="num">9.1</span>Current Dasha Status</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Level</th><th>Lord</th><th>Period</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mahadasha</strong></td><td>Saturn</td><td>5 Jan 2008 → 4 Jan 2027</td><td>Final 7 months of a 19-year period. Foundational phase ending.</td></tr>
+        <tr><td>Antardasha</td><td>Jupiter</td><td>23 Jun 2024 → 4 Jan 2027</td><td>Wisdom-building sub-period. Good for study, research, mentor connections.</td></tr>
+        <tr><td>Pratyantardasha</td><td>Moon</td><td>10 Apr 2026 → 26 Jun 2026</td><td>Emotional intensity, intuitive insights, possible mood swings.</td></tr>
+        <tr><td>Transit overlay</td><td>Sade Sati peak</td><td>Mar 2025 → Mar 2027</td><td>Pressure, slow progress, internal restructuring.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">9.2</span>Mahadasha Timeline</h3>
+  <div class="dasha-timeline">
+    <div class="dasha-track" style="position: relative;">
+      <div class="dasha-block past" style="width: 9%;"><span class="lord">Jup</span><span class="years">'06–'08</span></div>
+      <div class="dasha-block current" style="width: 26%; position: relative;">
+        <span class="lord">SATURN</span><span class="years">2008 → 2027 · 19y</span>
+      </div>
+      <div class="dasha-block next" style="width: 23%;"><span class="lord">MERCURY</span><span class="years">2027 → 2044 · 17y</span></div>
+      <div class="dasha-block future" style="width: 9.5%;"><span class="lord">Ketu</span><span class="years">'44–'51</span></div>
+      <div class="dasha-block future" style="width: 27%;"><span class="lord">VENUS</span><span class="years">2051 → 2071 · 20y</span></div>
+      <div class="dasha-block future" style="width: 5.5%;"><span class="lord">Sun</span><span class="years">'71–'77</span></div>
+      <!-- "Now" marker positioned at ~25% in (Saturn end is at 35% of total; we are about 95% into Saturn) -->
+      <div class="dasha-marker" style="left: 32.5%;"></div>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-mute);text-align:center;margin-top:36px;font-size:0.9rem;">Vimshottari Dasha cycle — 120 years total · You are 8 months from the most important dasha transition of your young life</p>
+  </div>
+
+  <h3><span class="num">9.3</span>Mercury Mahadasha Sub-Periods</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Antardasha</th><th>Window</th><th>Theme</th></tr></thead>
+      <tbody>
+        <tr><td>Me / Me</td><td>Jan 2027 → Jun 2029</td><td>First fully independent phase. Identity-defining projects. Probably first real job or first launched product.</td></tr>
+        <tr><td>Me / Ke</td><td>Jun 2029 → May 2030</td><td>Sudden pivot, possible re-think, deep technical learning.</td></tr>
+        <tr><td><strong>Me / Ve</strong></td><td><strong>May 2030 → Mar 2033</strong></td><td><strong>Strongest 20s accumulation window.</strong> Possible relationship/marriage signals.</td></tr>
+        <tr><td>Me / Su</td><td>Mar 2033 → Feb 2034</td><td>Visibility, recognition, possible leadership role.</td></tr>
+        <tr><td>Me / Mo</td><td>Feb 2034 → Jul 2035</td><td>Public-facing work; possibly marriage.</td></tr>
+        <tr><td>Me / Ma</td><td>Jul 2035 → Jul 2036</td><td>Aggressive growth, possible move or ventures.</td></tr>
+        <tr><td><strong>Me / Ra</strong></td><td><strong>Jul 2036 → Jan 2039</strong></td><td><strong>Foreign + technology + scale amplification.</strong> Major career amplification.</td></tr>
+        <tr><td>Me / Ju</td><td>Jan 2039 → Apr 2041</td><td>Maturity, mentorship, advisory/founder authority.</td></tr>
+        <tr><td>Me / Sa</td><td>Apr 2041 → Jan 2044</td><td>Consolidation, building lasting systems.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 2026 -->
+  <div class="year-card">
+    <span class="year-card-marker">★ 2026</span>
+    <h3 style="margin-top: 0;">The Heaviest Year of the Decade</h3>
+    <p>Final year of Saturn Mahadasha + Sade Sati peak. Structurally heaviest — not because bad things happen, but because <em>internal compression is at maximum</em>. The chart is preparing for the Mercury-dasha launch in Jan 2027.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Sub-Period</th><th>Theme</th></tr></thead>
+        <tbody>
+          <tr><td>May 2026 (now)</td><td>Sa-Ju-Mo</td><td>Emotional sensitivity high. Don't make permanent career decisions in May/early June — feeling-led rather than thinking-led.</td></tr>
+          <tr><td><strong>Jun – Aug 2026</strong></td><td>Sa-Ju-Ma</td><td><strong>Best 2.5-month window in H1 for visible technical output.</strong> Energy returns. Good for hackathons, technical pushes, shipping a project.</td></tr>
+          <tr><td><strong>Aug – Dec 2026</strong></td><td>Sa-Ju-Ra</td><td><strong>The single most important sub-period of 2026.</strong> Rahu in Lagna being activated. First major recognition, foreign-org contact, online community standing. Don't pivot impulsively — add, don't replace.</td></tr>
+          <tr><td>Dec 2026 – Jan 2027</td><td>Sa-Ju-Ju</td><td>Wisdom-driven completion. Wrap up Saturn-era projects.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>2026 Outlook</th></tr></thead>
+        <tbody>
+          <tr><td>Career / AI projects</td><td>Mid-to-strong year. Visible breakthrough is back-half (Aug–Dec). Sade Sati peak means recognition feels delayed even when work is good — keep shipping.</td></tr>
+          <tr><td>GSoC / open-source</td><td>If applied for 2026: outcome uncertain in chart terms; smaller/niche org acceptance more probable than flagship. <strong>2027 cohort is significantly stronger karmically.</strong></td></tr>
+          <tr><td>First income streams</td><td>Possible but small. Focus on <strong>one</strong> SaaS reaching first 10 paying users by year-end.</td></tr>
+          <tr><td>Health</td><td>Watch sleep disruption, anxiety spikes, mid-year fatigue.</td></tr>
+          <tr><td>Relationships</td><td>Low priority year. Crushes possible (Mercury-Moon sub-periods), but not life-defining.</td></tr>
+          <tr><td>Travel</td><td>Within India likely; foreign travel less likely until 2027–2028.</td></tr>
+          <tr><td>Caution zones</td><td>(a) Impulsive academic decisions Jul–Sep; (b) overspending on courses/tools/subscriptions; (c) burnout from over-stacking projects.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2027 -->
+  <div class="year-card">
+    <span class="year-card-marker">★ 2027</span>
+    <h3 style="margin-top: 0;">The Structural Turning Year</h3>
+    <p>Saturn Mahadasha ends 4 Jan 2027. Mercury Mahadasha begins. Sade Sati peak phase ends around March 2027. You'll feel this — most people describe it as <em>weight lifting off in slow motion</em>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quarter</th><th>Sub-Period</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Q1 (Jan–Mar)</strong></td><td>Me-Me-Me</td><td>Triple Mercury start. Brief disorientation in early Jan, then <em>surge</em> of clarity by Feb–Mar. Sade Sati peak releases ~March. <strong>Best time to launch a new identity/project</strong> — new website, new GitHub presence, new positioning.</td></tr>
+          <tr><td>Q2 (Apr–Jun)</td><td>Me-Me-Ke</td><td>Some unexpected pivots. Could mean dropping a project, switching specialisation within AI/ML.</td></tr>
+          <tr><td><strong>Q3 (Jul–Sep)</strong></td><td>Me-Me-Ve</td><td>Income and relationship signals warm up. First taste of "money coming from a built thing."</td></tr>
+          <tr><td>Q4 (Oct–Dec)</td><td>Me-Me-Su</td><td>Visibility, recognition. Possibly a talk, an article going around, a notable internship offer, or public win.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>2027 Outlook</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Career breakthrough</strong></td><td><strong>High probability.</strong> Mercury MD start + Sade Sati end = the chart literally turns a corner. Clear "new chapter" feeling.</td></tr>
+          <tr><td>Wealth</td><td>Earnings begin meaningfully. <strong>Real first money from real work</strong> — not life-changing in 2027, but real.</td></tr>
+          <tr><td>Relationships</td><td>Possibility of first significant emotional connection. Q3 is warmest window.</td></tr>
+          <tr><td>Marriage</td><td>Too early; not on the cards in 2027.</td></tr>
+          <tr><td>Health</td><td>Substantially better than 2026. Mental clarity returns. Energy improves once Sade Sati peak releases (~March 2027).</td></tr>
+          <tr><td><strong>Travel</strong></td><td><strong>Foreign travel meaningfully possible</strong> — short trip, conference, internship abroad, or accepted into a foreign program.</td></tr>
+          <tr><td>Best months</td><td>March (Sade Sati release), Aug–Sep (Me-Me-Ve), November (recognition window).</td></tr>
+          <tr><td>Difficult months</td><td>Late April–early May (Ketu sub-sub disorientation); occasionally late October.</td></tr>
+          <tr><td>Karmic lesson of 2027</td><td>Stepping out of "preparation mode" into "shipping mode." Refusing opportunities out of "not ready yet" is the karmic test.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3><span class="num">9.4</span>3-Year and 5-Year Outlook</h3>
+  <p><strong>Next 3 years (2026–2029):</strong> The arc is <em>transition → launch → first real traction</em>. Saturn dasha closes, Mercury opens, Sade Sati releases, first independent income begins, foreign exposure starts, identity solidifies. By end of 2029 you should be recognisable as "someone who does X in AI/ML" rather than "CS student who likes AI."</p>
+  <p><strong>Next 5 years (2026–2031):</strong> By 2031 (age 25), Mercury-Venus antardasha is active and the chart's strongest 20s income window opens. Realistic scenario: meaningful job or co-founder role at a serious AI/ML organisation, OR a SaaS doing $10k+/month, OR both. Foreign work/residency is plausible. Marriage still 1–2 years away.</p>
+</section>
+
+<!-- ====================== PART 10 ====================== -->
+<section class="part" id="part-10">
+  <div class="part-header">
+    <span class="part-number">दशम भाग</span>
+    <span class="part-roman">Part Ten</span>
+    <h2 class="part-title">Remedies</h2>
+  </div>
+
+  <p>Remedies in Vedic astrology work best when they are <strong>(a) sustained, (b) low-cost, and (c) integrated into life</strong> rather than performed as transactions. Skip anything that feels like a sales pitch.</p>
+
+  <h3><span class="num">10.1</span>Highest-Priority Practical Remedies (Free)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Practice</th><th>Why It Fits</th><th>How</th></tr></thead>
+      <tbody>
+        <tr><td>Daily 10-min meditation / pranayama</td><td>Addresses Moon-Rahu mental noise + Sade Sati pressure</td><td>Same time daily, ideally morning</td></tr>
+        <tr><td><strong>Fixed sleep schedule</strong></td><td>Moon-Rahu in Lagna = sleep is non-negotiable</td><td>Lights down by 10:30 PM, sleep by 11:30 PM</td></tr>
+        <tr><td>Daily journaling (5–10 min)</td><td>Mercury debilitated → writing strengthens Mercury</td><td>Even one paragraph a day</td></tr>
+        <tr><td>Physical movement</td><td>Pisces lagna needs grounding; Saturn rewards consistency</td><td>4+ sessions/week — anything</td></tr>
+        <tr><td>Hanuman Chalisa</td><td>Standard remedy for Sade Sati</td><td>Daily, or Saturdays minimum</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">10.2</span>Mantras (Choose 1–2, Not All)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>For</th><th>Mantra</th><th>Frequency</th></tr></thead>
+      <tbody>
+        <tr><td>Hanuman (Saturn/Sade Sati)</td><td><em>Om Hanumate Namah</em> or Hanuman Chalisa</td><td>Daily or Tue/Sat</td></tr>
+        <tr><td>Vishnu (Jupiter, Lagna lord)</td><td><em>Om Namo Narayanaya</em></td><td>108x any morning</td></tr>
+        <tr><td>Saraswati (debilitated Mercury)</td><td><em>Om Aim Saraswatyai Namah</em></td><td>Daily during study</td></tr>
+        <tr><td>Saturn beej</td><td><em>Om Sham Shanaischaraya Namah</em></td><td>23x on Saturdays</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span class="num">10.3</span>Gemstones — Honest View</h3>
+  <p>For Pisces Lagna, textbook stones are <strong>Yellow Sapphire (Pukhraj)</strong> for Jupiter and <strong>Red Coral (Moonga)</strong> for Mars. Yellow Sapphire is in principle suitable, but only consider after age 21 and only if you can afford an unheated, lab-certified stone (3–5 carats). Cheap yellow sapphires are usually citrine or heat-treated.</p>
+  <p><strong>Avoid:</strong> Emerald (Mercury debilitated), Diamond (Venus is functional malefic for Pisces), Blue Sapphire (risky for Pisces lagna despite Saturn's NBRY).</p>
+  <div class="callout">
+    <div class="callout-title">My honest recommendation as a student</div>
+    <p style="margin: 0;">Skip gemstones for now. They are not a shortcut. Mantras + lifestyle remedies do more, cost less, and don't require trusting a stone-seller.</p>
+  </div>
+
+  <h3><span class="num">10.4</span>Donation Remedies</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>For</th><th>Action</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>Saturn (current MD + Sade Sati)</td><td>Mustard oil, black sesame, blankets, food to elderly/labourers</td><td>Saturdays</td></tr>
+        <tr><td>Mercury (incoming MD)</td><td>Books, stationery to students; help younger students with studies</td><td>Wednesdays</td></tr>
+        <tr><td>Rahu (in Lagna)</td><td>Donate to causes around technology access for underprivileged</td><td>Saturday or eclipse day</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ====================== PART 11 ====================== -->
+<section class="part" id="part-11">
+  <div class="part-header">
+    <span class="part-number">एकादश भाग</span>
+    <span class="part-roman">Part Eleven</span>
+    <h2 class="part-title">Final <em>Life Guidance</em></h2>
+  </div>
+
+  <h3><span class="num">11.1</span>Your Chart in One Paragraph</h3>
+  <p>You are a <strong>Pisces-Lagna researcher-builder</strong> with strong technology karma (Sun in Shatabhisha, Rahu in Lagna), structural reward for long-form discipline (Saturn NBRY + Saturn exalted in D9), and a wealth pattern that rewards built systems over salary (Venus in 11th, Saturn ruling 11th in 5th). You are in the <em>last year of a foundational dasha</em> and entering a <em>17-year intellect-and-technology dasha (Mercury)</em> that aligns with your stated direction. The friction is internal — perfectionism, overthinking, building invisibly. The strengths are real: pattern recognition, endurance, imagination-to-system translation, and a chart genuinely suited to AI work.</p>
+
+  <div class="pullquote">
+    The biggest life lesson: <em>translate depth into shipped systems — without disappearing into the depth.</em>
+  </div>
+
+  <h3><span class="num">11.2</span>What to Strongly Pursue</h3>
+  <ol>
+    <li><strong>Long-form technical mastery</strong> in one AI/ML sub-area (agents, RL, systems, evaluation, infra — pick by 2027 and go deep).</li>
+    <li><strong>Public technical writing / public building</strong> — your chart's biggest under-leveraged asset.</li>
+    <li><strong>One income-compounding asset</strong> by 2030 (SaaS, equity in serious org, content asset, library/tool).</li>
+    <li><strong>A daily practice that anchors you</strong> (meditation/journaling/exercise — any one consistently).</li>
+    <li><strong>One serious mentor or peer circle</strong> by 2027.</li>
+  </ol>
+
+  <h3><span class="num">11.3</span>What to Strongly Avoid</h3>
+  <ol>
+    <li><strong>Course-hopping and tool-hopping.</strong> Mercury debilitated + Rahu in Lagna will make this very tempting. The single biggest waste of your 20s if you fall into it.</li>
+    <li><strong>Building in stealth indefinitely.</strong> Sun in 12th + Jupiter in 8th will pull you toward invisible building. Resist monthly.</li>
+    <li><strong>Marrying before age 27.</strong> Timing isn't right; discernment isn't ready yet.</li>
+    <li><strong>Borrowing for consumption or status.</strong> Pisces lagna types spend imaginatively. Track every rupee through 2027.</li>
+    <li><strong>Letting Sade Sati convince you you're on the wrong path.</strong> You're not. The slowness is the price of the foundation, not evidence of wrong direction.</li>
+  </ol>
+
+  <h3><span class="num">11.4</span>Destiny Strengths</h3>
+  <ul>
+    <li>Pattern recognition across messy domains</li>
+    <li>Endurance for slow, hard problems</li>
+    <li>Imagination structured into systems</li>
+    <li>Pattern of foreign / digital / borderless work</li>
+    <li>Compounding wealth through built things</li>
+  </ul>
+
+  <h3><span class="num">11.5</span>Core Karmic Purpose</h3>
+  <p>Your chart suggests this purpose: <strong>to build technological systems — likely AI/agent systems — that extend human capability, do this in a way that compounds over a long career rather than peaking early, and translate the depth of your inner world into structured tools that help others.</strong> Marriage and family are secondary supports to this purpose, not its core. This is unusual — many charts show family/relationships as primary. Yours doesn't, and that's not a problem; it's the structure.</p>
+
+  <h3><span class="num">11.6</span>Honest Final Prediction</h3>
+  <p>If you do the following, your chart strongly supports the outcome you're aiming for:</p>
+  <ul>
+    <li>Survive Sade Sati without abandoning direction (next ~10 months)</li>
+    <li>Ship at least one public project by Jan 2027, even if rough</li>
+    <li>Pick a niche within AI by mid-2027 and commit for 3+ years</li>
+    <li>Don't chase highest salary at 21–23; chase steepest learning curve</li>
+    <li>Maintain the basics (sleep, exercise, daily focused work blocks)</li>
+  </ul>
+
+  <div class="callout gold">
+    <div class="callout-title">Realistic Outcomes</div>
+    <p><strong>By age 25 (2031):</strong> Recognised young AI builder/engineer in a specific niche. Meaningful job or small SaaS at meaningful revenue (or both). Foreign exposure likely begun. Financial independence not yet, but trajectory clear. One serious relationship probable, marriage not yet.</p>
+    <p style="margin-bottom: 0;"><strong>By age 30–32:</strong> Mercury-Rahu peak. Foreign work or notable AI org role, public technical reputation in your niche, financial independence in the practical sense probable, marriage likely in this window.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">What could go wrong</div>
+    <p style="margin: 0;">Most likely failure mode is <em>quiet drift</em> — staying in the college bubble too long, never shipping publicly, course-hopping, mental health unaddressed leading to burnout in late 20s. None of this is destined. All of it is a probable failure mode for your chart specifically — which is why naming it matters.</p>
+  </div>
+
+  <div class="pullquote" style="border-top: 1px solid var(--gold-deep); border-bottom: 1px solid var(--gold-deep); margin-top: 60px;">
+    The chart is good. <em>Better than most.</em> Use it.
+  </div>
+</section>
+
+</div><!-- /content -->
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <p>This reading is a structural interpretation of a sidereal chart in the Parashari tradition, not deterministic forecasting. Astrology offers a map of probabilities and patterns; choices remain yours.</p>
+  <p>Where timing is given, monthly predictions carry ±1–2 month uncertainty; yearly trends carry ±6–12 month uncertainty. Where advice is given, it is grounded in classical principles applied to your specific configuration.</p>
+  <p class="signature">Prepared 23 May 2026 · Lahiri Ayanamsa 23°56′37″</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+// Scroll progress bar
+const progress = document.getElementById('progress');
+function updateProgress() {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progress.style.width = scrolled + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// TOC toggle
+const tocToggle = document.getElementById('tocToggle');
+const toc = document.getElementById('toc');
+tocToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toc.classList.toggle('open');
+  tocToggle.textContent = toc.classList.contains('open') ? '×' : '☰';
+});
+toc.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    toc.classList.remove('open');
+    tocToggle.textContent = '☰';
+  }
+});
+document.addEventListener('click', (e) => {
+  if (!toc.contains(e.target) && e.target !== tocToggle && toc.classList.contains('open')) {
+    toc.classList.remove('open');
+    tocToggle.textContent = '☰';
+  }
+});
+</script>
+
+</body>
+</html>
